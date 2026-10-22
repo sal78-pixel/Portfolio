@@ -23,7 +23,12 @@ if (menuButton && navigation) {
 
 const themeButton = document.querySelector('.theme-toggle');
 if (themeButton) {
-  const savedTheme = localStorage.getItem('portfolio-theme');
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('portfolio-theme');
+  } catch {
+    // The theme control still works for this visit if local storage is unavailable.
+  }
   if (savedTheme === 'dark') document.body.classList.add('dark');
 
   const updateThemeLabel = () => {
@@ -36,7 +41,11 @@ if (themeButton) {
   themeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
-    localStorage.setItem('portfolio-theme', theme);
+    try {
+      localStorage.setItem('portfolio-theme', theme);
+    } catch {
+      // Keep the theme toggle functional when the browser blocks local storage.
+    }
     updateThemeLabel();
   });
 }
