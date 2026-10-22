@@ -14,5 +14,5 @@ Each page is plain HTML, and each section is marked with a `MOVEABLE SECTION` co
 
 - Built with HTML5, CSS3, and small vanilla JavaScript enhancements.
 - Project photographs, CAD views, and a CAM toolpath image are extracted from the supplied engineering portfolio and stored locally in `assets/`.
-- Contact links open email or LinkedIn. The site has no backend and does not collect messages.
+- The Contact page links to LinkedIn. The site has no backend and does not collect messages.
 - Portfolio facts and project descriptions are based on the resume and engineering portfolio supplied by Shawn Leyson. Graduation timing was left open where the source was unclear.
