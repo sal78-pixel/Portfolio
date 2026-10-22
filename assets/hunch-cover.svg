@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc">
+  <title id="title">Actuator close-out cover concept</title><desc id="desc">A circular machined equipment cover with a stepped rim and evenly spaced fastener holes.</desc>
+  <defs><radialGradient id="metal"><stop stop-color="#F0E7E2"/><stop offset=".68" stop-color="#C6A8A7"/><stop offset="1" stop-color="#8D7C91"/></radialGradient></defs>
+  <rect width="720" height="500" fill="#F0E7E2"/><circle cx="355" cy="256" r="191" fill="#A28EA0" opacity=".3"/><circle cx="348" cy="245" r="153" fill="url(#metal)" stroke="#2A1D3E" stroke-width="8"/><circle cx="348" cy="245" r="114" fill="#F0E7E2" stroke="#514C70" stroke-width="6"/><circle cx="348" cy="245" r="73" fill="#C6A8A7" stroke="#514C70" stroke-width="5"/><circle cx="348" cy="245" r="28" fill="#514C70"/>
+  <g fill="#2A1D3E"><circle cx="348" cy="112" r="9"/><circle cx="442" cy="151" r="9"/><circle cx="481" cy="245" r="9"/><circle cx="442" cy="339" r="9"/><circle cx="348" cy="378" r="9"/><circle cx="254" cy="339" r="9"/><circle cx="215" cy="245" r="9"/><circle cx="254" cy="151" r="9"/></g>
+  <path d="M512 126h120M529 144h86" stroke="#514C70" stroke-width="4" stroke-linecap="round"/><text x="512" y="102" fill="#514C70" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">NASA HUNCH</text><path d="m530 357 63 0m-31-31v63" stroke="#2A1D3E" stroke-width="3" opacity=".55"/>
+</svg>

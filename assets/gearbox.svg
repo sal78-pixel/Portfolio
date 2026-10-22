@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc">
+  <title id="title">Custom robot drivetrain gearbox</title><desc id="desc">An illustrated cutaway gearbox showing two meshing gears, shafts, and a compact housing.</desc>
+  <rect width="720" height="500" fill="#F0E7E2"/><path d="M131 155h390l48 55v177H144l-39-46V198z" fill="#C6A8A7" stroke="#2A1D3E" stroke-width="8" stroke-linejoin="round"/><path d="M166 190h312l30 34v123H168l-24-28V211z" fill="#F0E7E2" stroke="#514C70" stroke-width="5"/>
+  <g fill="#A28EA0" stroke="#2A1D3E" stroke-width="7"><circle cx="280" cy="260" r="78"/><circle cx="408" cy="298" r="54"/></g><g fill="#F0E7E2"><circle cx="280" cy="260" r="20"/><circle cx="408" cy="298" r="15"/></g>
+  <path d="M280 182v-39m78 117h39m11 92v39m-128-53h-38M207 207l-27-27m155 135 27 27M457 249l27-27m-220 91-28 28" stroke="#2A1D3E" stroke-width="9" stroke-linecap="round"/><path d="M138 260h122m148 38h151" stroke="#514C70" stroke-width="11"/><circle cx="137" cy="260" r="18" fill="#514C70"/><circle cx="558" cy="298" r="18" fill="#514C70"/><text x="92" y="105" fill="#514C70" font-family="Arial,sans-serif" font-size="18" letter-spacing="4">DESIGN · MACHINE · TEST</text>
+</svg>
