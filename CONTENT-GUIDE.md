@@ -17,6 +17,7 @@ Each page has its own navigation and footer. Those are separate from the moveabl
 - `index.html`: introduction, featured project links, short profile, and contact call to action.
 - `about.html`: education, work history, robotics leadership, and volunteering.
 - `projects.html`: duplicate or reorder a `<article class="project-feature">` to add or rearrange a project. Keep each `id` unique.
+- `assets/`: the ten project photographs, CAD views, and CAM view from the engineering portfolio PDF. Each is under 500 KB.
 - `skills.html`: edit the skill cards and tags. They describe experience without invented numeric proficiency levels.
 - `contact.html`: email and LinkedIn links.
 - `styles.css`: palette, typography, spacing, mobile layouts, and dark theme.
