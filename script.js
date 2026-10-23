@@ -55,7 +55,11 @@ const projectCarouselControls = document.querySelector('[data-project-controls]'
 if (projectCarousel && projectCarouselControls) {
   const previousProjectButton = projectCarouselControls.querySelector('[data-project-previous]');
   const nextProjectButton = projectCarouselControls.querySelector('[data-project-next]');
+  const rotationProjectButton = projectCarouselControls.querySelector('[data-project-rotation]');
   const projectCards = [...projectCarousel.querySelectorAll('.project-card')];
+  const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let rotationTimer = null;
+  let rotationPaused = reducedMotionPreference.matches;
 
   const updateProjectCarouselControls = () => {
     const maxScroll = projectCarousel.scrollWidth - projectCarousel.clientWidth;
@@ -63,25 +67,80 @@ if (projectCarousel && projectCarouselControls) {
     nextProjectButton.disabled = projectCarousel.scrollLeft >= maxScroll - 1;
   };
 
-  const moveProjectCarousel = (direction) => {
-    const cardStyle = getComputedStyle(projectCarousel);
-    const gap = parseFloat(cardStyle.columnGap || cardStyle.gap) || 0;
-    const distance = projectCards[0].getBoundingClientRect().width + gap;
-    const left = projectCarousel.scrollLeft + direction * distance;
+  const updateRotationControl = () => {
+    const icon = rotationProjectButton.querySelector('span');
+    icon.textContent = rotationPaused ? '▶' : 'Ⅱ';
+    rotationProjectButton.setAttribute(
+      'aria-label',
+      rotationPaused ? 'Resume automatic carousel rotation' : 'Pause automatic carousel rotation'
+    );
+  };
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const getProjectStep = () => {
+    const trackStyle = getComputedStyle(projectCarousel);
+    const gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
+    return projectCards[0].getBoundingClientRect().width + gap;
+  };
+
+  const stopAutomaticRotation = () => {
+    rotationPaused = true;
+    window.clearInterval(rotationTimer);
+    rotationTimer = null;
+    updateRotationControl();
+  };
+
+  const startAutomaticRotation = () => {
+    rotationPaused = false;
+    window.clearInterval(rotationTimer);
+    rotationTimer = window.setInterval(() => {
+      if (document.hidden) return;
+      const maxScroll = projectCarousel.scrollWidth - projectCarousel.clientWidth;
+      const nextPosition = projectCarousel.scrollLeft >= maxScroll - 1
+        ? 0
+        : projectCarousel.scrollLeft + getProjectStep();
+
+      if (reducedMotionPreference.matches) {
+        projectCarousel.scrollLeft = nextPosition;
+      } else {
+        projectCarousel.scrollTo({ left: nextPosition, behavior: 'smooth' });
+      }
+    }, 6000);
+    updateRotationControl();
+  };
+
+  const moveProjectCarousel = (direction) => {
+    const left = projectCarousel.scrollLeft + direction * getProjectStep();
+    if (reducedMotionPreference.matches) {
       projectCarousel.scrollLeft = left;
     } else {
       projectCarousel.scrollTo({ left, behavior: 'smooth' });
     }
   };
 
-  if (projectCards.length > 1 && previousProjectButton && nextProjectButton) {
+  if (projectCards.length > 1 && previousProjectButton && nextProjectButton && rotationProjectButton) {
     projectCarouselControls.hidden = false;
-    previousProjectButton.addEventListener('click', () => moveProjectCarousel(-1));
-    nextProjectButton.addEventListener('click', () => moveProjectCarousel(1));
+    previousProjectButton.addEventListener('click', () => {
+      stopAutomaticRotation();
+      moveProjectCarousel(-1);
+    });
+    nextProjectButton.addEventListener('click', () => {
+      stopAutomaticRotation();
+      moveProjectCarousel(1);
+    });
+    rotationProjectButton.addEventListener('click', () => {
+      if (rotationPaused) startAutomaticRotation();
+      else stopAutomaticRotation();
+    });
+    projectCarousel.addEventListener('pointerenter', stopAutomaticRotation);
+    projectCarousel.addEventListener('focusin', stopAutomaticRotation);
     projectCarousel.addEventListener('scroll', updateProjectCarouselControls, { passive: true });
     window.addEventListener('resize', updateProjectCarouselControls);
     updateProjectCarouselControls();
+    if (rotationPaused) updateRotationControl();
+    else startAutomaticRotation();
+
+    reducedMotionPreference.addEventListener('change', (event) => {
+      if (event.matches) stopAutomaticRotation();
+    });
   }
 }
